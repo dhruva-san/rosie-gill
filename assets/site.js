@@ -78,7 +78,7 @@ if (canvas) {
     w = canvas.clientWidth; h = canvas.clientHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.lineWidth = 1.25;
+    ctx.lineWidth = 1;
     cols = Math.max(40, Math.round(w / 12));
     if (!running) draw(2500);
   }
