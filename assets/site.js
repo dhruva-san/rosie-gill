@@ -46,7 +46,7 @@ if (canvas) {
         const y = base - (wave(x, z, t) * amp - dip) * h * .5 / z;
         i ? ctx.lineTo(sx, y) : ctx.moveTo(sx, y);
       }
-      ctx.strokeStyle = `rgba(174, 157, 120, ${.95 - r / ROWS * .8})`;
+      ctx.strokeStyle = `rgba(198, 162, 84, ${1 - r / ROWS * .75})`;  // a warmer, more saturated take on her #ae9d78 so 1px lines read as gold, not grey
       ctx.stroke();
       ctx.lineTo(w, h); ctx.lineTo(0, h);
       ctx.fillStyle = '#fff';
@@ -60,7 +60,7 @@ if (canvas) {
     w = canvas.clientWidth; h = canvas.clientHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1.25;
     cols = Math.max(40, Math.round(w / 12));
     if (!running) draw(2500);
   }
