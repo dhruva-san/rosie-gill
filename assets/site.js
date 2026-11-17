@@ -23,9 +23,9 @@ if (canvas) {
   const ROWS = 40;
   let w, h, cols, pointerX = 0, press = 0, pressTarget = 0, running = false;
   // A few dozen points of light on the nearer lines; none when motion is reduced.
-  const glints = still ? [] : Array.from({ length: 36 }, () => ({
+  const glints = still ? [] : Array.from({ length: 20 }, () => ({
     r: Math.floor(Math.random() * 22), u: .03 + Math.random() * .94,
-    phase: Math.random() * 6.28, speed: .4 + Math.random() * .5,
+    phase: Math.random() * 6.28, speed: .25 + Math.random() * .35,
   }));
 
   const wave = (x, z, t) =>
@@ -61,13 +61,13 @@ if (canvas) {
       // Glints ride this row's line, so nearer swells still pass in front of them.
       for (const g of glints) {
         if (g.r !== r) continue;
-        const b = Math.max(0, Math.sin(t * g.speed + g.phase)) ** 20;  // dark most of the time, a slow brief twinkle
+        const b = Math.max(0, Math.sin(t * g.speed + g.phase)) ** 40;  // dark nearly all the time, a slow brief twinkle
         if (b < .02) continue;
         const gx = g.u * w, gy = lineY(gx, z);
-        ctx.fillStyle = `rgba(222, 184, 96, ${b * .2})`;
-        ctx.beginPath(); ctx.arc(gx, gy, 5, 0, 7); ctx.fill();
-        ctx.fillStyle = `rgba(212, 170, 70, ${b})`;
-        ctx.beginPath(); ctx.arc(gx, gy, .7 + b * .9, 0, 7); ctx.fill();
+        ctx.fillStyle = `rgba(222, 184, 96, ${b * .12})`;
+        ctx.beginPath(); ctx.arc(gx, gy, 3, 0, 7); ctx.fill();
+        ctx.fillStyle = `rgba(212, 170, 70, ${b * .85})`;
+        ctx.beginPath(); ctx.arc(gx, gy, .5 + b * .5, 0, 7); ctx.fill();
       }
     }
     if (running) requestAnimationFrame(draw);
