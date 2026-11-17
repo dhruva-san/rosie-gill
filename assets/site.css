@@ -61,32 +61,36 @@ a:hover { color: var(--ink); }
 .site-header {
   position: relative; z-index: 5;
   display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-  padding: 1.6rem var(--gutter);
+  padding: 1rem var(--gutter);
 }
-.wordmark { font-size: 1.05rem; font-weight: 300; letter-spacing: .42em; color: var(--stone); text-decoration: none; white-space: nowrap; }
+/* Touch targets: every standalone link and button is at least 44px tall */
+.wordmark { display: inline-block; padding-block: .8rem; font-size: 1.05rem; font-weight: 300; letter-spacing: .42em; color: var(--stone); text-decoration: none; white-space: nowrap; }
 .nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2.2rem); }
 .nav a { color: var(--stone); text-decoration: none; }
 .nav a:not(.btn) { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; padding-block: .4em; transition: background-size .5s var(--ease), color .3s; }
 .nav a:not(.btn):hover, .nav a[aria-current] { background-size: 100% 1px; color: var(--ink); }
-.menu-btn { display: none; background: none; border: 0; padding: .8em 0; color: var(--ink); cursor: pointer; }
+.menu-btn { display: none; min-height: 44px; background: none; border: 0; padding: 0 0 0 1.5rem; color: var(--ink); cursor: pointer; }
 
 .btn {
-  display: inline-block; padding: 1.25em 2.6em;
+  display: inline-block; padding: 1.45em 2.6em;
   border: 1px solid var(--ink); background: transparent; color: var(--ink);
   text-decoration: none; cursor: pointer;
   transition: background-color .5s var(--ease), color .5s var(--ease);
 }
 .btn:hover { background: var(--ink); color: var(--paper); }
-.nav .btn { padding: 1em 1.8em; }
+.nav .btn { padding: 1.4em 1.8em; }
 
 @media (max-width: 1080px) {
   .menu-btn { display: block; }
   .nav {
     display: none; position: absolute; inset: 100% 0 auto 0;
-    flex-direction: column; align-items: flex-start; gap: 1.2rem;
-    padding: 1.5rem var(--gutter) 2.5rem; background: var(--paper); border-bottom: 1px solid var(--rule);
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: .5rem var(--gutter) 2.5rem; background: var(--paper); border-bottom: 1px solid var(--rule);
   }
   .site-header.open .nav { display: flex; }
+  .nav a:not(.btn) { padding-block: 1rem; background: none; }
+  .nav a[aria-current]:not(.btn) { text-decoration: underline; text-underline-offset: .5em; }
+  .nav .btn { align-self: flex-start; margin-top: 1rem; }
 }
 
 /* Hero: the sentence, then a field of breath beneath it */
@@ -111,7 +115,7 @@ a:hover { color: var(--ink); }
 /* Photographs */
 .band img { width: 100%; aspect-ratio: 3 / 1; object-fit: cover; object-position: 30% 35%; }
 .reveal { overflow: hidden; }
-@media (max-width: 720px) { .band img { aspect-ratio: 4 / 5; } }
+@media (max-width: 720px) { .band img { aspect-ratio: 3 / 2; } }
 
 section { padding-block: var(--space); }
 .section-head { margin-bottom: clamp(2rem, 5vw, 4rem); }
@@ -161,6 +165,7 @@ figcaption { margin-top: .8rem; font-size: .85em; font-style: italic; }
 .prose li + li { margin-top: .35em; }
 .lede { font-size: 1.25em; font-weight: 400; line-height: 1.4; color: var(--ink); }
 .more { display: inline-block; margin-top: 1.6em; }
+.more:not(.btn) { padding-block: .4em; }
 .pause { width: 4rem; margin-block: 2.5em; border: 0; border-top: 1px solid var(--gold); }
 
 /* Clients' words */
@@ -200,7 +205,8 @@ form .btn { justify-self: start; }
 .closing { text-align: center; }
 .closing > * + * { margin-top: 2rem; }
 .site-footer { display: grid; justify-items: center; gap: .9rem; padding: 4rem var(--gutter) 3rem; text-align: center; font-size: .95em; }
-.site-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 2rem; }
+.site-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 2rem; }
+.site-footer .links a { padding-block: .5rem; }
 .fine { margin-top: 1.5rem; font-size: .6rem; }
 
 /* Motion: one arrival on load, one unveiling for photographs, nothing else moves unasked */
